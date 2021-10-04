@@ -1,0 +1,39 @@
+ALGORITHM CP_LDS
+VAR
+    sets : HASH_TABLE<INTEGER,INTEGER>
+    set1,set2:ARRAY_OF INTEGER[20];
+    i,x,y,L,count:INTEGER;
+    sum:INTEGER:=0;
+BEGIN
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+    Read(set1[i]);
+    END_FOR
+    FOR x FROM 0 TO set2.length-1 STEP 1  DO
+    Read(set2[x]);
+    END_FOR
+
+    FOR i FROM 0 TO set1.length -1 STEP 1  DO
+       IF (sets.lookup(set1[i]) = TRUE) THEN
+           count := sets.get(set1[i]);
+           sets.insert(set1[i],count+1);
+       ELSE
+           sets.insert(set1[i],1);
+       END_IF
+   END_FOR
+
+   FOR x FROM 0 TO set2.length -1 STEP 1  DO
+       IF (sets.lookup(set2[x]) = TRUE) THEN
+           count := sets.get(set2[x]);
+           sets.insert(set2[x],count+1);
+       ELSE
+           sets.insert(set2[x],1);
+       END_IF
+   END_FOR
+    FOR i FROM 0 TO L-1 STEP 1  DO
+        IF (sets[i].get = 1) THEN
+            sum := sum + sets[i].get;
+        END_IF
+    END_FOR
+    Write(sum);
+
+END
